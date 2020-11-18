@@ -1,0 +1,74 @@
+global rateDepo, rateW
+rateDepo = 0.015
+rateW = 0.010
+
+class SavingsAccount :
+    
+    def __init__(self) :
+        self.initialBalance = 20000 
+    
+    def deposit(self):
+        depo = float(input("Enter Deposit Amount: RM "))
+        
+        if (depo > 1000):
+            totalrate= depo * rateDepo 
+            totalDepo = totalrate + depo
+            self.initialBalance += totalDepo
+            
+            print("\nDeposited Amount: RM ", depo)
+            print("Deposited Amount with rate: RM ", totalDepo)
+            print("Total Money: RM", self.initialBalance)
+        else :
+            self.initialBalance += depo
+            print("\nDeposited Amount: RM ", depo)
+            print("Total Money: RM", self.initialBalance)
+            
+    def withdraw(self):
+        withdraw = float(input("\nEnter Withdraw Amount: RM "))
+        totalrate = withdraw * rateW
+        if self.initialBalance > withdraw :
+            
+                    if(withdraw > 1000):
+                        
+                        self.initialBalance -= (withdraw * rateW)
+                        
+                        print("Withdraw amount: RM", withdraw)
+                        print("Withdraw rate amount: RM", totalrate)
+                        print("Total Balance Account: RM", self.initialBalance)
+                    else : 
+                        self.initialBalance -= withdraw
+                        print("Withdraw amount: RM", withdraw)
+                        print("Total Balance Account: RM", self.initialBalance)
+                        
+        else:
+            print("Insufficient funds")
+            print("Still want to withdraw?Choose 1 to withdraw or 0 to not withdraw")
+            self.w1 = int(input(''))
+            if (self.w1 == 1):
+                withdraw=float(input("Enter withdraw amount: RM"))
+                if self.initialBalance > withdraw :
+                    totalrate = withdraw * rateW
+                    if(withdraw > 1000):
+                        self.initialBalance -= withdraw
+                        self.initialBalance += (withdraw * rateW)
+                        
+                        print("Withdraw amount: RM", withdraw)
+                        print("Withdraw rate amount: RM", totalrate)
+                        print("Total Balance Account: RM", self.initialBalance)
+                    
+                    else : 
+                        self.initialBalance -= withdraw
+                        print("Withdraw amount: RM", withdraw)
+                        print("Total Balance Account: RM", self.initialBalance)
+   
+    def get_balance(self):
+        """Return account balance."""
+        print("\nAvailable Balance : RM",self.initialBalance)
+ 
+h = BankAccount()
+s = SavingsAccount()
+h.pin()
+s.deposit()
+s.withdraw()
+s.get_balance()
+h.change_pin(pin)
