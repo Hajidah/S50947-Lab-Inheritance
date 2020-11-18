@@ -1,0 +1,55 @@
+global pin
+pin = 1234
+class BankAccount :
+            
+    def __init__(self, balance=0) :
+        self.balance = balance
+
+    def pin(self):
+            self.pin =int(input("Enter pin "))
+            if self.pin != pin:
+                print("Wrong Pin!Insert the correct pin!")
+                self.pin =int(input("Enter pin "))
+            else: 
+                return self.pin == pin
+       
+    
+    def deposit(self):
+        money = float(input("Enter deposit amount: RM"))
+        self.balance += money
+        print("\nDeposited Amount: RM", money)
+        print("Total Money: RM", self.balance)
+        
+    def withdraw(self):
+        money=float(input("Enter withdraw amount: RM"))
+        if self.balance > money :
+            self.balance -= money
+            print("Withdraw amount: RM", money)
+        else:
+            print("Insufficient funds")
+            print("Still want to withdraw?Choose 1 to withdraw or 0 to not withdraw")
+            self.w1 = int(input(''))
+            if (self.w1 == 1):
+                money=float(input("Enter withdraw amount: RM"))
+                if self.balance >= money :
+                    self.balance -= money
+                    print("Withdraw amount: RM", money)
+           
+        
+    def get_balance(self):
+        print("\nAvailable Balance : RM",self.balance)
+    
+    def change_pin(self, pin):
+        self.newPin = input("\nEnter new pincode: ")
+        if self.newPin == pin:
+            print("\nSame pin. No changes were made")
+        else :
+            print("\nNew pin has been changes")
+        
+h = BankAccount()
+
+h.pin()
+h.deposit()
+h.withdraw()
+h.get_balance()
+h.change_pin(pin)
