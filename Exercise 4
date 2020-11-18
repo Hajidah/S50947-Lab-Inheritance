@@ -1,0 +1,50 @@
+global fee, rateDepo
+fee = 1.50
+rateDepo = 0.015
+
+class FeeSavingsAccount:
+    
+    def __init__(self):
+        self.initialBalance = 20000
+    
+    def deposit(self):
+        depo = float(input("Enter Deposit Amount: RM "))
+        
+        totalrate= depo * rateDepo 
+        totalDepo = totalrate + depo
+        self.initialBalance += totalrate
+        
+        print("\nDeposited Amount: RM ", depo)
+        print("Deposited Amount with rate: RM ", totalDepo)
+        print("Total Money: RM", self.initialBalance)
+    
+    def withdraw(self):
+        withdraw = float(input("\nEnter Withdraw Amount: RM "))
+        
+        if self.initialBalance > withdraw:
+            self.initialBalance -= withdraw
+            totalBalance = self.initialBalance - fee
+            
+            print("Withdraw amount : RM ", withdraw)
+            print("Total Balance Account after fee charges: RM", totalBalance)
+        else :
+            print("Insufficient funds")
+            print("Still want to withdraw?Choose 1 to withdraw or 0 to not withdraw")
+            self.w1 = int(input(''))
+            if (self.w1 == 1):
+                if self.initialBalance > withdraw:
+                    self.initialBalance -= withdraw
+                    totalBalance = self.initialBalance - fee
+            
+                    print("Withdraw amount : RM ", withdraw)
+                    print("Total Balance Account after fee charges: RM", totalBalance)
+            else:
+                pass
+
+h = BankAccount()            
+s = SavingsAccount()
+f = FeeSavingsAccount()
+h.pin()
+f.deposit()
+f.withdraw()
+h.change_pin(pin)
